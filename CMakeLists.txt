@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
 project(advance_game)
 
 # Set this to the minimal version you want to support
-find_package(raylib 3.0 REQUIRED) # Let CMake search for a raylib-config.cmake
+find_package(raylib CONFIG REQUIRED) # Let CMake search for a raylib-config.cmake
 
 # This is the main part:
 
@@ -16,6 +16,7 @@ add_executable(${PROJECT_NAME}
   )
 
 #set(raylib_VERBOSE 1)
-target_link_libraries(${PROJECT_NAME} raylib)
+target_include_directories(${PROJECT_NAME} PRIVATE ${RAYLIB_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${RAYLIB_LIBRARIES})
 
 # That's it! You should have an example executable that you can run. Have fun!
